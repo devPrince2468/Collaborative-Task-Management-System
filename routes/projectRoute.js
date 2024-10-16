@@ -43,8 +43,11 @@ router.put(
   "/update-project/:id",
   authMiddleware,
   [
-    check("name", "Project name is required").not().isEmpty(),
-    check("description", "Project description is required").not().isEmpty(),
+    check("name", "Project name is required").optional().not().isEmpty(),
+    check("description", "Project description is required")
+      .optional()
+      .not()
+      .isEmpty(),
   ],
   (req, res, next) => {
     const errors = validationResult(req);
